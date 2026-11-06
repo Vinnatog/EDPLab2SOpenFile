@@ -6,7 +6,9 @@ namespace EDPLab2SOpenFile
         {
             InitializeComponent();
         }
-        public void DisplayToList() {
+
+        public void DisplayToList()
+        {
             openFileDialog1.InitialDirectory = @"C:\Users\Enteng13\source\repos";
             openFileDialog1.Title = "Browse Text Files";
             openFileDialog1.DefaultExt = "txt";
@@ -17,17 +19,33 @@ namespace EDPLab2SOpenFile
                 return;
             }
 
-            string Path = openFileDialog1.FileName;
+            string path = openFileDialog1.FileName;
             lvShowText.Items.Clear();
 
             try
             {
-                using (StreamReader streamReader = File.OpenText(Path))
+                // I-setup ang columns (isang beses lang)
+                lvShowText.View = View.Details;
+                lvShowText.FullRowSelect = true;
+                lvShowText.GridLines = true;
+                lvShowText.Columns.Clear();
+                lvShowText.Columns.Add("Line #", 60);
+                lvShowText.Columns.Add("Text", 400);
+
+                // Ipakita sa title ng form kung anong file ang napili
+                this.Text = "Selected: " + Path.GetFileName(path);
+
+                using (StreamReader streamReader = File.OpenText(path))
                 {
                     string lineText;
+                    int lineNumber = 1;
+
                     while ((lineText = streamReader.ReadLine()) != null)
                     {
-                        lvShowText.Items.Add(lineText);
+                        ListViewItem item = new ListViewItem(lineNumber.ToString());
+                        item.SubItems.Add(lineText);
+                        lvShowText.Items.Add(item);
+                        lineNumber++;
                     }
                 }
             }
@@ -35,12 +53,16 @@ namespace EDPLab2SOpenFile
             {
                 MessageBox.Show("Cannot read the file.", "File Error");
             }
-
         }
         private void btnOpen_Click_1(object sender, EventArgs e)
         {
             DisplayToList();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            lvShowText.Items.Clear();
+        }
     }
-    }
+}
 
