@@ -24,15 +24,12 @@ namespace EDPLab2SOpenFile
 
             try
             {
-                // I-setup ang columns (isang beses lang)
                 lvShowText.View = View.Details;
                 lvShowText.FullRowSelect = true;
                 lvShowText.GridLines = true;
                 lvShowText.Columns.Clear();
                 lvShowText.Columns.Add("Line #", 60);
                 lvShowText.Columns.Add("Text", 400);
-
-                // Ipakita sa title ng form kung anong file ang napili
                 this.Text = "Selected: " + Path.GetFileName(path);
 
                 using (StreamReader streamReader = File.OpenText(path))
