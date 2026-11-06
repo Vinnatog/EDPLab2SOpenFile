@@ -46,7 +46,7 @@
             // btnOpen
             // 
             btnOpen.FlatStyle = FlatStyle.Flat;
-            btnOpen.Location = new Point(240, 239);
+            btnOpen.Location = new Point(247, 235);
             btnOpen.Name = "btnOpen";
             btnOpen.Size = new Size(135, 48);
             btnOpen.TabIndex = 1;
@@ -61,7 +61,7 @@
             // button1
             // 
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(414, 239);
+            button1.Location = new Point(421, 235);
             button1.Name = "button1";
             button1.Size = new Size(135, 48);
             button1.TabIndex = 2;
